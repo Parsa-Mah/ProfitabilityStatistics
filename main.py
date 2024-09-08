@@ -62,3 +62,29 @@ for app in android:
 print('Number of duplicate apps:', len(duplicate_apps))
 print('\n')
 print('Examples of duplicate apps:', duplicate_apps[:15])
+
+reviews_max = {}
+for app in android:
+    name = app[0]
+    n_reviews = float(app[3])
+    if name in reviews_max and reviews_max[name] < n_reviews:
+        reviews_max[name] = n_reviews
+    elif name not in reviews_max:
+        reviews_max[name] = n_reviews
+
+print('Expected length:', len(android) - 1181)
+print('Actual length:', len(reviews_max))
+
+android_clean = []
+already_added = []
+
+for app in android:
+    name = app[0]
+    n_reviews = float(app[3])
+    if n_reviews == reviews_max[name] and name not in already_added:
+        android_clean.append(app)
+        already_added.append(name)
+
+explore_data(android_clean, 0, 3, True)
+
+
