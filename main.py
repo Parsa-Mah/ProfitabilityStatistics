@@ -87,4 +87,13 @@ for app in android:
 
 explore_data(android_clean, 0, 3, True)
 
+def is_app_english(app_name: str):
+    for char in app_name:
+        if ord(char) > 127:
+            return False
+    return True
 
+print(is_app_english('Instagram'))
+print(is_app_english('爱奇艺PPS -《欢乐颂2》电视剧热播'))
+print(is_app_english('Docs To Go™ Free Office Suite'))
+print(is_app_english('Instachat 😜'))
