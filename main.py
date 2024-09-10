@@ -117,3 +117,19 @@ for app in ios:
 explore_data(android_english, 0, 3, True)
 print('\n')
 explore_data(ios_english, 0, 3, True)
+
+android_final = []
+ios_final = []
+
+for app in android_english:
+    price = app[7]
+    if price == '0':
+        android_final.append(app)
+
+for app in ios_english:
+    price = app[4]
+    if price == '0.0':
+        ios_final.append(app)
+
+print(len(android_final))
+print(len(ios_final))
