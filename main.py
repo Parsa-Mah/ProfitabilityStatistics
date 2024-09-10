@@ -88,12 +88,32 @@ for app in android:
 explore_data(android_clean, 0, 3, True)
 
 def is_app_english(app_name: str):
+    non_ascii_chars_count = 0
     for char in app_name:
         if ord(char) > 127:
-            return False
+            non_ascii_chars_count += 1
+            if non_ascii_chars_count > 3:
+                return False
     return True
 
 print(is_app_english('Instagram'))
 print(is_app_english('爱奇艺PPS -《欢乐颂2》电视剧热播'))
 print(is_app_english('Docs To Go™ Free Office Suite'))
 print(is_app_english('Instachat 😜'))
+
+android_english = []
+ios_english = []
+
+for app in android_clean:
+    name = app[0]
+    if is_app_english(name):
+        android_english.append(app)
+
+for app in ios:
+    name = app[1]
+    if is_app_english(name):
+        ios_english.append(app)
+
+explore_data(android_english, 0, 3, True)
+print('\n')
+explore_data(ios_english, 0, 3, True)
